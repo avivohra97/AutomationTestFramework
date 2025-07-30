@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -14,6 +15,18 @@ public abstract class BrowserUtility {
     private WebDriverWait wait;
     public BrowserUtility(WebDriver driver){
         wd = driver;
+    }
+    public BrowserUtility(String driver){
+        switch (driver){
+            case "chrome":
+                wd = new ChromeDriver();
+                break;
+            case "edge":
+                wd = new EdgeDriver();
+                break;
+            default:
+                System.err.println("Select either chrome or edge as browser");
+        }
     }
 
     public  WebDriver getWd() {
@@ -46,7 +59,7 @@ public abstract class BrowserUtility {
     public void scrollToElement(By path){
 
         JavascriptExecutor js = (JavascriptExecutor) getWd();
-        System.out.println("error message came ");
+
         js.executeScript("arguments[0].scrollIntoView();", getWd().findElement(path));
     }
 
@@ -57,7 +70,6 @@ public abstract class BrowserUtility {
             wait = new WebDriverWait(getWd(),Duration.ofMillis(10000));
             wait.until(ExpectedConditions.visibilityOfElementLocated(error));
         }
-
     }
 
 

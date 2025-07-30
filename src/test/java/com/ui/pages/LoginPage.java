@@ -13,11 +13,12 @@ public class LoginPage extends BrowserUtility {
     public LoginPage(WebDriver wd){
         super(wd);
     }
-    public void fillCreds(String emailValue, String passwordValue){
+    public MyAccountPage fillCreds(String emailValue, String passwordValue){
         scrollToElement(email);
         fillInput(email,emailValue);
         fillInput(paswd,passwordValue);
         clickOn(loginBtn);
+        return new MyAccountPage(getWd());
     }
     public void errorMessageDisplayed(){
         waitForDisplayed(error);

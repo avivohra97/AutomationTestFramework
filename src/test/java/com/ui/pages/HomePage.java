@@ -6,7 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class HomePage extends BrowserUtility {
-    public HomePage(WebDriver driver){
+
+    public HomePage(String driver){
         super(driver);
     }
     private final String URL = "http://www.automationpractice.pl/index.php";
