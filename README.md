@@ -25,7 +25,7 @@ scroll into view
 
 can add sonar qube for this
 
-- ======================Post optimization phase =====================
+## Post optimization phase
 - creating page object resolved stale element exception as find element was created everytime
 - 
 
