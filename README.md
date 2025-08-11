@@ -27,5 +27,9 @@ can add sonar qube for this
 
 ## Post optimization phase
 - creating page object resolved stale element exception as find element was created everytime
-- 
+
+## testNg
+It is annotation based library, where annotation is extra info attached to a class or method
+
+add @Test to the method you want to run.
 
