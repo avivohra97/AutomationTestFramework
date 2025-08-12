@@ -8,13 +8,15 @@ import static org.testng.Assert.assertEquals;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 
 public class LoginTestsTestNg {
 
     HomePage wd;
 
     @BeforeMethod(description = "Before method starts")
-    public void setup(){
+    public void setup() throws IOException {
         wd = new HomePage("chrome");
         wd.manageWindow();
         wd.setImplicitWait(10000);
