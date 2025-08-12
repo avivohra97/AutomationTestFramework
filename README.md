@@ -14,11 +14,11 @@ evaded by re declaring xpath
 scroll into view
 
 - hardcoding
-- duplicacy
+- duplicate
 - test data in script, no tdd
 - naming convention
 - exception Handling
-- syncronization: wd.findElements is not synchronized
+- synchronization: wd.findElements is not synchronized
 - assertion 
 - abstraction
 
@@ -32,4 +32,13 @@ can add sonar qube for this
 It is annotation based library, where annotation is extra info attached to a class or method
 
 add @Test to the method you want to run.
+- @Test(description = "Login flow", groups = {"e2e","sanity"}), here desc is self-description and groups are a way to categorize tests.
+
+### Script practices 
+Test methods
+- Test script must be small.
+- Should not have conditions loops or try catch.
+- Reduce use of local variables.
+- At least one assertion.
+
 
