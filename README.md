@@ -41,4 +41,35 @@ Test methods
 - Reduce use of local variables.
 - At least one assertion.
 
+### Properties
+One can use Properties class and set *.properties file.
+```java
+File propFile = new File(System.getProperty("user.dir")+"\\src\\test\\java\\com\\ui\\config\\QA.properties");
+FileReader fileReader = new FileReader(propFile);
+
+Properties prop = new Properties();
+prop.load(fileReader);
+return prop.getProperty(key);
+```
+
+However, one can also read properties from JSON, for that gson dependency can be used.
+Gson is a Java library that can be used to convert Java Objects into their JSON representation. It can also be used to convert a JSON string to an equivalent Java object.
+
+- error encountered for gson
+- Exception in thread "main" java.lang.NullPointerException: Cannot invoke "java.util.Map.get(Object)" because the return value of "com.ui.pojo.Config.getEnvironmentMap()" is null
+
+at com.ui.utility.JSONUtility.main(JSONUtility.java:19)
+
+- fix
+```java
+// The @SerializedName annotation tells Gson to map the JSON key "environment"
+    // to this field. The field name is also updated to match the getter/setter.
+    @SerializedName("environment")
+    Map<String,Environment> environment;
+
+```
+
+gson is preferred as it isolated different env without having to create different files.
+
+
 
