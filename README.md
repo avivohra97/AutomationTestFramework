@@ -71,5 +71,22 @@ at com.ui.utility.JSONUtility.main(JSONUtility.java:19)
 
 gson is preferred as it isolated different env without having to create different files.
 
+```java
+        Gson gson = new Gson();
+        File file = new File(System.getProperty("user.dir")+"\\testData\\loginData.json");
+        FileReader fr = new FileReader(file);
+        TestData testData = gson.fromJson(fr, TestData.class);
+        List<User> dataToReturn = new ArrayList<>();
+        for(User user:testData.getData()){
+            dataToReturn.add(user);
+        }
+        return dataToReturn.iterator();
+```
+
+However, Gson can be useful in Selenium automation scenarios where you need to:
+Handle API responses within a web application: If your web application interacts with backend APIs and displays the JSON responses on the UI, you might use Selenium to extract these responses (e.g., from network logs or hidden elements) and then use Gson to parse them into Java objects for validation or further processing.
+Manage test data in JSON format: You can store your test data (e.g., user credentials, form input values) in JSON files and use Gson to deserialize them into Java objects within your Selenium tests. This provides a structured and easily maintainable way to manage test data.
+
+
 
 

@@ -1,12 +1,10 @@
 package com.ui.pages;
 
-import com.google.j2objc.annotations.Weak;
+
 import com.ui.utility.BrowserUtility;
 import com.ui.utility.JSONUtility;
 import com.ui.utility.PropertiesUtil;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
