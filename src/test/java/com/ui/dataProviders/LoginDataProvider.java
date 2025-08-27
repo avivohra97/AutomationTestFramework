@@ -17,10 +17,13 @@ import java.util.List;
 public class LoginDataProvider {
     @DataProvider(name = "LoginTestDataProvider")
     public Iterator<User> loginDataProvider() throws IOException {
+        // reading file with GSON
         Gson gson = new Gson();
         File file = new File(System.getProperty("user.dir")+"\\testData\\loginData.json");
         FileReader fr = new FileReader(file);
         TestData testData = gson.fromJson(fr, TestData.class);
+
+        // get data of users from data object
         List<User> dataToReturn = new ArrayList<>();
         for(User user:testData.getData()){
             dataToReturn.add(user);

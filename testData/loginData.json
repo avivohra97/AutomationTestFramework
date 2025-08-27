@@ -2,11 +2,13 @@
   "data": [
     {
       "email": "avn",
-      "password": "pass"
+      "password": "pass",
+      "expectedResult": false
     },
     {
       "email": "bakomam596@skrak.com",
-      "password": "password"
+      "password": "password",
+      "expectedResult": true
     }
   ]
 }

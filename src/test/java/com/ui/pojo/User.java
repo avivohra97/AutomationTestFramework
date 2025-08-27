@@ -3,6 +3,7 @@ package com.ui.pojo;
 public class User {
     private String email;
     private String password;
+    private boolean expectedResult;
 
     public String getEmail() {
         return email;
@@ -18,5 +19,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isGetExpectedResult() {
+        return expectedResult;
+    }
+
+    public void setGetExpectedResult(boolean expectedResult) {
+        this.expectedResult = expectedResult;
     }
 }
