@@ -4,6 +4,8 @@ import com.google.gson.*;
 import com.ui.pojo.TestData;
 import com.ui.pojo.User;
 import com.ui.utility.CSVUtility;
+import com.ui.utility.ExcelUtility;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.json.Json;
 import org.testng.annotations.DataProvider;
 
@@ -35,5 +37,10 @@ public class LoginDataProvider {
     @DataProvider(name = "LoginTestCSVDataProvider")
     public Iterator<User> loginCsvDataProvider(){
         return CSVUtility.readCSV();
+    }
+
+    @DataProvider(name = "LoginTestExcelDataProvider")
+    public Iterator<User> loginExcelDataProvider() throws IOException, InvalidFormatException {
+        return ExcelUtility.readExcel();
     }
 }

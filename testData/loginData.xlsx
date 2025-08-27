@@ -1,0 +1,3 @@
+email,password,expectedResult
+avn,pass,false
+bakomam596@skrak.com,password,true
