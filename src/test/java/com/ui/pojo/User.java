@@ -5,6 +5,12 @@ public class User {
     private String password;
     private boolean expectedResult;
 
+    public User(String email, String password, boolean expectedResult) {
+        this.email = email;
+        this.password = password;
+        this.expectedResult = expectedResult;
+    }
+
     public String getEmail() {
         return email;
     }

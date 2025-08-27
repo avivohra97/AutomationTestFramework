@@ -3,6 +3,7 @@ package com.ui.dataProviders;
 import com.google.gson.*;
 import com.ui.pojo.TestData;
 import com.ui.pojo.User;
+import com.ui.utility.CSVUtility;
 import org.openqa.selenium.json.Json;
 import org.testng.annotations.DataProvider;
 
@@ -29,5 +30,10 @@ public class LoginDataProvider {
             dataToReturn.add(user);
         }
         return dataToReturn.iterator();
+    }
+
+    @DataProvider(name = "LoginTestCSVDataProvider")
+    public Iterator<User> loginCsvDataProvider(){
+        return CSVUtility.readCSV();
     }
 }
