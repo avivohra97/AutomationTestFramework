@@ -11,9 +11,10 @@ public class MyAccountPage extends BrowserUtility {
     }
 
 
-    public void nameDisplayed() {
+    public String nameDisplayed() {
         waitForDisplayed(name);
         String text = getWd().findElement(name).getText();
         System.out.println("name found on page is "+text);
+        return text;
     }
 }

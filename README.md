@@ -14,11 +14,11 @@ evaded by re declaring xpath
 scroll into view
 
 - hardcoding
-- duplicacy
+- duplicate
 - test data in script, no tdd
 - naming convention
 - exception Handling
-- syncronization: wd.findElements is not synchronized
+- synchronization: wd.findElements is not synchronized
 - assertion 
 - abstraction
 
@@ -27,5 +27,78 @@ can add sonar qube for this
 
 ## Post optimization phase
 - creating page object resolved stale element exception as find element was created everytime
-- 
+
+## testNg
+It is annotation based library, where annotation is extra info attached to a class or method
+
+add @Test to the method you want to run.
+- @Test(description = "Login flow", groups = {"e2e","sanity"}), here desc is self-description and groups are a way to categorize tests.
+
+### Script practices 
+Test methods
+- Test script must be small.
+- Should not have conditions loops or try catch.
+- Reduce use of local variables.
+- At least one assertion.
+
+### Properties
+One can use Properties class and set *.properties file.
+```java
+File propFile = new File(System.getProperty("user.dir")+"\\src\\test\\java\\com\\ui\\config\\QA.properties");
+FileReader fileReader = new FileReader(propFile);
+
+Properties prop = new Properties();
+prop.load(fileReader);
+return prop.getProperty(key);
+```
+
+However, one can also read properties from JSON, for that gson dependency can be used.
+Gson is a Java library that can be used to convert Java Objects into their JSON representation. It can also be used to convert a JSON string to an equivalent Java object.
+
+- error encountered for gson
+- Exception in thread "main" java.lang.NullPointerException: Cannot invoke "java.util.Map.get(Object)" because the return value of "com.ui.pojo.Config.getEnvironmentMap()" is null
+
+at com.ui.utility.JSONUtility.main(JSONUtility.java:19)
+
+- fix
+```java
+// The @SerializedName annotation tells Gson to map the JSON key "environment"
+    // to this field. The field name is also updated to match the getter/setter.
+    @SerializedName("environment")
+    Map<String,Environment> environment;
+
+```
+
+gson is preferred as it isolated different env without having to create different files.
+
+```java
+        Gson gson = new Gson();
+        File file = new File(System.getProperty("user.dir")+"\\testData\\loginData.json");
+        FileReader fr = new FileReader(file);
+        TestData testData = gson.fromJson(fr, TestData.class);
+        List<User> dataToReturn = new ArrayList<>();
+        for(User user:testData.getData()){
+            dataToReturn.add(user);
+        }
+        return dataToReturn.iterator();
+```
+
+However, Gson can be useful in Selenium automation scenarios where you need to:
+Handle API responses within a web application: If your web application interacts with backend APIs and displays the JSON responses on the UI, you might use Selenium to extract these responses (e.g., from network logs or hidden elements) and then use Gson to parse them into Java objects for validation or further processing.
+Manage test data in JSON format: You can store your test data (e.g., user credentials, form input values) in JSON files and use Gson to deserialize them into Java objects within your Selenium tests. This provides a structured and easily maintainable way to manage test data.
+
+#### csv reader
+One will need openCSV lib
+```java
+            fr = new FileReader(file);
+            csvReader = new CSVReader(fr);
+            // This line reads and discards the header row before the main loop begins.
+            csvReader.readNext();
+
+            while((data = csvReader.readNext())!=null){
+                User user = new User(data[0],data[1],Boolean.parseBoolean(data[2]));
+                userList.add(user);
+            }
+```
+
 
